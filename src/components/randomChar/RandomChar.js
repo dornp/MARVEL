@@ -28,6 +28,16 @@ class RandomChar extends Component {
 
     render() {
         const {char: {name, description, thumbnail, homepage, wiki}} = this.state;
+    
+        let text = description;
+
+        if (!description) {
+            text = "The character doesn't have a description";
+        }
+
+        if (description && description.length > 10) {
+            text = `${description.substring(0,10)}...`;
+        }
 
         return (
             <div className="randomchar">
@@ -35,7 +45,7 @@ class RandomChar extends Component {
                     <img src={thumbnail} alt="Random character" className="randomchar__img"/>
                     <div className="randomchar__info">
                         <p className="randomchar__name">{name}</p>
-                        <p className="randomchar__descr"> {description}</p>
+                        <p className="randomchar__descr"> {text}</p>
                         <div className="randomchar__btns">
                             <a href={homepage} className="button button__main">
                                 <div className="inner">homepage</div>
