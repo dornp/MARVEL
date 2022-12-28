@@ -6,9 +6,7 @@ import mjolnir from '../../resources/img/mjolnir.png';
 import MarvelService from '../../services/MarvelService';
 
 class RandomChar extends Component {
-    constructor(props) {
-        super(props)
-    }
+
     state = {
         char: {},
         loading: true,
@@ -45,7 +43,16 @@ class RandomChar extends Component {
         this.setState({
             loading: false,
             error: true
+        });
+
+    }
+
+    onGetRandomChar = () => {
+        this.setState({
+            loading: true
         })
+
+        this.updateChar();
     }
 
     render() {
@@ -69,7 +76,7 @@ class RandomChar extends Component {
                         Or choose another one
                     </p>
                     <button className="button button__main">
-                        <div className="inner">try it</div>
+                        <div className="inner" onClick={this.onGetRandomChar}>try it</div>
                     </button>
                     <img src={mjolnir} alt="mjolnir" className="randomchar__decoration"/>
                 </div>
@@ -92,9 +99,16 @@ const View = ({char}) => {
         text = `${description.substring(0,200)}...`;
     }
 
+    let classes = "randomchar__img";
+
+    if (thumbnail.indexOf('image_not_available') !== -1) {
+        classes += " randomchar__img_empty";
+
+    }
+
     return (
         <div className="randomchar__block">
-            <img src={thumbnail} alt="Random character" className="randomchar__img"/>
+            <img src={thumbnail} alt="Random character" className={classes}/>
             <div className="randomchar__info">
                 <p className="randomchar__name">{name}</p>
                 <p className="randomchar__descr"> {text}</p>
