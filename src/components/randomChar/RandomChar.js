@@ -44,7 +44,6 @@ class RandomChar extends Component {
             loading: false,
             error: true
         });
-
     }
 
     onGetRandomChar = () => {
