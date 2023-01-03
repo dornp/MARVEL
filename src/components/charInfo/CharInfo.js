@@ -25,7 +25,6 @@ class CharInfo extends Component {
         if (this.props.charId !== prevProps.charId) {
             this.updateChar();
         }
-
     }
 
     updateChar = () => {
@@ -33,7 +32,6 @@ class CharInfo extends Component {
         if (!charId) {
             return;
         }
-
 
         this.onCharLoading();
         this.marvelService
